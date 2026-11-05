@@ -1,5 +1,7 @@
 # FacePilot
 
+[![tests](https://github.com/vuppalasaatvikraj/facepilot/actions/workflows/tests.yml/badge.svg)](https://github.com/vuppalasaatvikraj/facepilot/actions/workflows/tests.yml)
+
 **Hands-free mouse control from a webcam.**
 
 FacePilot is a local-first assistive input prototype. It tracks facial landmarks with MediaPipe, maps small head movements to relative cursor motion, and converts deliberate eye winks into mouse clicks. A live HUD shows the neutral center, dead zone, eye-opening measurements, and the most recent action.
@@ -81,7 +83,7 @@ More detail, including the cursor equations and state transitions, is in [`docs/
 | Numerics | [NumPy](https://numpy.org/) | Landmark geometry and EAR. |
 | Input injection | Hyprland IPC, [pynput](https://pynput.readthedocs.io/), [PyAutoGUI](https://pyautogui.readthedocs.io/) | Hyprland is the primary path; the other backends are fallbacks. |
 | Tests | `unittest` (standard library) | No camera or display required. |
-| CI | GitHub Actions | Configured to run the pure-Python tests with headless OpenCV. |
+| CI | GitHub Actions | Runs the pure-Python tests with headless OpenCV on Python 3.12. |
 
 No cloud inference, database, message queue, or web framework is involved.
 
@@ -239,7 +241,7 @@ See [`SECURITY.md`](SECURITY.md) for the security model and reporting process.
 | CLI parsing (`--help`) | Pass |
 | Live camera + MediaPipe loop | Not run during repository preparation |
 | Hyprland input injection | Not run; the development session is niri |
-| GitHub Actions workflow | Configured; first run happens after the first push |
+| GitHub Actions workflow | Passing on `main` (Python 3.12, headless OpenCV) |
 
 Run the hardware-independent suite:
 
@@ -256,7 +258,7 @@ The tests cover:
 - Left/right wink clicks, double clicks, pause suppression, cooldown, and tracking-loss cancellation.
 - CLI argument defaults and overrides.
 
-They do **not** open a camera, run MediaPipe inference, initialize a compositor backend, or inject real input. Those paths require a manual hardware test on the target desktop. The GitHub Actions workflow is configured to run the same pure-logic suite on Python 3.12 with headless OpenCV; it had not run on GitHub at the time this repository was prepared.
+They do **not** open a camera, run MediaPipe inference, initialize a compositor backend, or inject real input. Those paths require a manual hardware test on the target desktop. The GitHub Actions workflow runs the same pure-logic suite on Python 3.12 with headless OpenCV; the current `main` run passes.
 
 ## Limitations
 
