@@ -1,0 +1,8 @@
+# Core vision and cursor math
+opencv-python>=4.8.0
+mediapipe>=0.10.0
+numpy>=1.24.0
+
+# Fallback mouse backends; the Hyprland backend uses the standard library IPC path
+pynput>=1.7.6
+pyautogui>=0.9.54
